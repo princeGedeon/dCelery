@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
-print(ALLOWED_HOSTS)
+
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'app'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CELERY_BROKER_URL=os.environ.get("CELERY_BROKER","redis://redis:6379/0")
+
+CELERY_RESULT_BACKEND=os.environ.get("CELERY_BACKEND","redis://redis:6379/0")
